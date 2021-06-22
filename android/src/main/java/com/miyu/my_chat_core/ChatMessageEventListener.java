@@ -18,9 +18,9 @@ public class ChatMessageEventListener implements ChatMessageEvent, ChatBaseEvent
 {
 	private EventChannel.EventSink events;
 
-	public ChatMessageEventListener(Context context)
+	public ChatMessageEventListener( )
 	{
-		this.context = context;
+
 	}
 
 	@Override

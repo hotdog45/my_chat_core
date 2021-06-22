@@ -40,7 +40,7 @@ public class MyChatCorePlugin implements FlutterPlugin, MethodCallHandler {
         context = flutterPluginBinding.getApplicationContext();
         channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "my_chat_core");
         eventChannel = new EventChannel(flutterPluginBinding.getBinaryMessenger(), "my_chat_core_status");
-        listener = new ChatMessageEventListener(flutterPluginBinding.getApplicationContext());
+        listener = new ChatMessageEventListener();
         eventChannel.setStreamHandler(listener);
         channel.setMethodCallHandler(this);
     }
