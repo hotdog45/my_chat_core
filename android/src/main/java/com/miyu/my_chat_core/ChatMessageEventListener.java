@@ -40,7 +40,7 @@ public class ChatMessageEventListener implements ChatMessageEvent, ChatBaseEvent
             map.put("type", type);
             this.events.success(map);
         } catch (Exception e) {
-            this.events.error("IM报错了");
+            this.events.error("IM报错了","",e);
         }
     }
 
@@ -54,7 +54,7 @@ public class ChatMessageEventListener implements ChatMessageEvent, ChatBaseEvent
             map.put("errorMsg", errorMsg);
             sendMessage(map);
         } catch (Exception e) {
-            this.events.error("IM报错了");
+            this.events.error("IM报错了","",e);
         }
     }
 
@@ -66,7 +66,7 @@ public class ChatMessageEventListener implements ChatMessageEvent, ChatBaseEvent
             map.put("arrayList", arrayList);
             sendMessage(map);
         } catch (Exception e) {
-            this.events.error("IM报错了");
+            this.events.error("IM报错了","",e);
         }
     }
 
@@ -78,7 +78,7 @@ public class ChatMessageEventListener implements ChatMessageEvent, ChatBaseEvent
             map.put("message", message);
             sendMessage(map);
         } catch (Exception e) {
-            this.events.error("IM报错了");
+            this.events.error("IM报错了","",e);
         }
     }
 
@@ -90,7 +90,7 @@ public class ChatMessageEventListener implements ChatMessageEvent, ChatBaseEvent
             map.put("code", code);
             sendMessage(map);
         } catch (Exception e) {
-            this.events.error("IM报错了");
+            this.events.error("IM报错了","",e);
         }
     }
 
@@ -102,7 +102,7 @@ public class ChatMessageEventListener implements ChatMessageEvent, ChatBaseEvent
             map.put("code", code);
             sendMessage(map);
         } catch (Exception e) {
-            this.events.error("IM报错了");
+            this.events.error("IM报错了","",e);
         }
     }
 
@@ -115,7 +115,7 @@ public class ChatMessageEventListener implements ChatMessageEvent, ChatBaseEvent
         try {
             this.events.success(map);
         } catch (Exception e) {
-            this.events.error("IM报错了");
+            this.events.error("IM报错了","",e);
         }
     }
 
