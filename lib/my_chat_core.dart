@@ -8,7 +8,7 @@ class MyChatCore {
   static const EventChannel _event = const EventChannel('my_chat_core_status');
 
   static Future<int?> login(name,token) async {
-    final int? version = await _channel.invokeMethod('login',{"name":name,"token",token});
+    final int? version = await _channel.invokeMethod('login',{"name":name,"token":token});
     return version;
   }
   static void init(String ip,int port)  {
