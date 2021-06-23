@@ -86,7 +86,7 @@ public class ChatMessageEventListener implements ChatMessageEvent, ChatBaseEvent
     public void onLoginResponse(int code) {
         try {
             Map map = new HashMap();
-            map.put("fun", "messagesBeReceived");
+            map.put("fun", "onLoginResponse");
             map.put("code", code);
             sendMessage(map);
         } catch (Exception e) {
