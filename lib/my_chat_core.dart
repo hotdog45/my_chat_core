@@ -11,6 +11,10 @@ class MyChatCore {
     final int? version = await _channel.invokeMethod('login',{"name":name,"token":token});
     return version;
   }
+  static Future<int?> loginOut() async {
+    final int? version = await _channel.invokeMethod('loginOut');
+    return version;
+  }
   static void init(String ip,int port)  {
     Map map = Map();
     map["ip"] = ip;
