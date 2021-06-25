@@ -75,7 +75,7 @@
         NSDictionary *dic = @{@"fun":@"onLoginResponse",@"code":[NSNumber numberWithInt:errorCode]};
         _eventSink(dic);
     } @catch (NSException *exception) {
-        _eventSink(@"");
+        _eventSink(@{@"fun":@"onLoginResponse"});
     } @finally {
          
     }
@@ -97,7 +97,7 @@
         NSDictionary *dic = @{@"fun":@"onLinkClose",@"code":[NSNumber numberWithInt:errorCode]};
         _eventSink(dic);
     } @catch (NSException *exception) {
-        _eventSink(@"");
+        _eventSink(@{@"fun":@"onLinkClose"});
     } @finally {
          
     }
@@ -120,14 +120,14 @@
 - (void) onRecieveMessage:(NSString *)fingerPrintOfProtocal withUserId:(NSString *)userid andContent:(NSString *)dataContent andTypeu:(int)typeu
 {
     @try {
-        NSDictionary *dic = @{@"fun":@"onRecieveMessage",@"fingerId":fingerPrintOfProtocal,
-                              @"userId":userid,
-                              @"dataContent":dataContent,
+        NSDictionary *dic = @{@"fun":@"onRecieveMessage",@"fingerId":fingerPrintOfProtocal  == nil ? @"" : fingerPrintOfProtocal,
+                              @"userId":userid  == nil ? @"" : userid,
+                              @"dataContent":dataContent  == nil ? @"" : dataContent,
                               @"type":[NSNumber numberWithInt:typeu],
         };
         _eventSink(dic);
     } @catch (NSException *exception) {
-        _eventSink(@"");
+        _eventSink(@{@"fun":@"onRecieveMessage"});
     } @finally {
          
     }
@@ -143,10 +143,10 @@
 - (void) onErrorResponse:(int)errorCode withErrorMsg:(NSString *)errorMsg
 {
     @try {
-        NSDictionary *dic = @{@"fun":@"onErrorResponse",@"errorCode":[NSNumber numberWithInt:errorCode],@"errorMsg":[NSNumber numberWithInt:errorMsg]};
+        NSDictionary *dic = @{@"fun":@"onErrorResponse",@"errorCode":[NSNumber numberWithInt:errorCode],@"errorMsg": errorMsg == nil ? @"" : errorMsg};
         _eventSink(dic);
     } @catch (NSException *exception) {
-        _eventSink(@"");
+        _eventSink(@{@"fun":@"onErrorResponse"});
     } @finally {
          
     }
@@ -165,10 +165,10 @@
 - (void) messagesLost:(NSMutableArray*)lostMessages
 {
     @try {
-        NSDictionary *dic = @{@"fun":@"onErrorResponse",@"arrayList":lostMessages};
+        NSDictionary *dic = @{@"fun":@"onErrorResponse",@"arrayList":lostMessages == nil ? @"" : lostMessages};
         _eventSink(dic);
     } @catch (NSException *exception) {
-        _eventSink(@"");
+        _eventSink(@{@"fun":@"onErrorResponse"});
     } @finally {
          
     }
@@ -189,10 +189,10 @@
 - (void) messagesBeReceived:(NSString *)theFingerPrint
 {
     @try {
-        NSDictionary *dic = @{@"fun":@"messagesBeReceived",@"message":theFingerPrint};
+        NSDictionary *dic = @{@"fun":@"messagesBeReceived",@"message":theFingerPrint == nil ? @"" : theFingerPrint};
         _eventSink(dic);
     } @catch (NSException *exception) {
-        _eventSink(@"");
+        _eventSink(@{@"fun":@"messagesBeReceived"});
     } @finally {
          
     }
