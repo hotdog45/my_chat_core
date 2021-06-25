@@ -25,8 +25,11 @@
             [self initWithIP:dic[@"ip"] andContent:[dic[@"port"] intValue]];
           result(@true);
         } else  if ([@"login" isEqualToString:call.method]) {
-          [[LocalDataSender sharedInstance] sendLogin:dic[@"name"]  withToken:dic[@"token"] ];
-          result(@0);
+          int code = [[LocalDataSender sharedInstance] sendLogin:dic[@"name"]  withToken:dic[@"token"] ];
+          result([NSNumber numberWithInt:code]);
+        } else  if ([@"loginOut" isEqualToString:call.method]) {
+            int code = [[LocalDataSender sharedInstance] sendLoginout];
+            result([NSNumber numberWithInt:code]);
         } else  if ([@"sendMassage" isEqualToString:call.method]) {
           [[LocalDataSender sharedInstance] sendCommonDataWithStr:dic[@"message"] toUserId:dic[@"uid"] qos:true fp:dic[@"fingerId"] withTypeu:[dic[@"type"] intValue]];
           result(@true);

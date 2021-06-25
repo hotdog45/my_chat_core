@@ -61,7 +61,10 @@ public class MyChatCorePlugin implements FlutterPlugin, MethodCallHandler {
                     result1.success(code);
                 }
             }.execute();
-        } else if (call.method.equals("sendMassage")) {
+        }  else if (call.method.equals("loginOut")) {
+           int code = LocalDataSender.getInstance().sendLoginout();
+            result.success(code);
+        }else if (call.method.equals("sendMassage")) {
 
             LocalDataSender.getInstance().sendCommonData((String) map.get("message"), (String) map.get("uid"), (String) map.get("fingerId"), (int) map.get("type"));
             result.success(true);
