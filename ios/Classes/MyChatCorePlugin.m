@@ -29,6 +29,12 @@
           result([NSNumber numberWithInt:code]);
         } else  if ([@"loginOut" isEqualToString:call.method]) {
             int code = [[LocalDataSender sharedInstance] sendLoginout];
+            [[ClientCoreSDK sharedInstance] releaseCore];
+            self._init = NO;
+            // 清空设置的回调
+            [ClientCoreSDK sharedInstance].chatBaseEvent = nil;
+            [ClientCoreSDK sharedInstance].chatMessageEvent = nil;
+            [ClientCoreSDK sharedInstance].messageQoSEvent = nil;
             result([NSNumber numberWithInt:code]);
         } else  if ([@"sendMassage" isEqualToString:call.method]) {
           [[LocalDataSender sharedInstance] sendCommonDataWithStr:dic[@"message"] toUserId:dic[@"uid"] qos:true fp:dic[@"fingerId"] withTypeu:[dic[@"type"] intValue]];
