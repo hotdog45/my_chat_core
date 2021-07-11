@@ -20,6 +20,7 @@ import android.os.Looper;
 
 import java.util.HashMap;
 import java.util.Map;
+import android.os.Handler;
 
 /**
  * MyChatCorePlugin
@@ -63,14 +64,24 @@ public class MyChatCorePlugin implements FlutterPlugin, MethodCallHandler {
             }.execute();
         }  else if (call.method.equals("loginOut")) {
             int code = LocalDataSender.getInstance().sendLoginout();
-            // 释放IM核心库资源
-            ClientCoreSDK.getInstance().release();
 
-            // 清空设置的回调
+
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    // 释放IM核心库资源
+                    ClientCoreSDK.getInstance().release();
+
+                    // 清空设置的回调
 //            ClientCoreSDK.getInstance().setChatBaseEvent(null);
 //            ClientCoreSDK.getInstance().setChatMessageEvent(null);
 //            ClientCoreSDK.getInstance().setMessageQoSEvent(null);
 //            this._init = false;
+                }
+            }, 3000);//3秒后执行Runnable中的run方法
+
+
 
             result.success(code);
         }else if (call.method.equals("sendMassage")) {
@@ -105,5 +116,7 @@ public class MyChatCorePlugin implements FlutterPlugin, MethodCallHandler {
             this._init = true;
         }
     }
+
+
 
 }

@@ -29,6 +29,9 @@
           result([NSNumber numberWithInt:code]);
         } else  if ([@"loginOut" isEqualToString:call.method]) {
             int code = [[LocalDataSender sharedInstance] sendLoginout];
+            
+            // 等待100毫秒，不然logout指令还没有发出去，IM资源（包括手机网络通信功能）就被释放罗
+            [NSThread sleepForTimeInterval:0.200f];   // 100毫秒
             [[ClientCoreSDK sharedInstance] releaseCore];
             self._init = NO;
             // 清空设置的回调
