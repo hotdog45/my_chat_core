@@ -74,13 +74,13 @@ public class MyChatCorePlugin implements FlutterPlugin, MethodCallHandler {
                     ClientCoreSDK.getInstance().release();
 
                     // 清空设置的回调
-//            ClientCoreSDK.getInstance().setChatBaseEvent(null);
-//            ClientCoreSDK.getInstance().setChatMessageEvent(null);
-//            ClientCoreSDK.getInstance().setMessageQoSEvent(null);
-//            this._init = false;
+            ClientCoreSDK.getInstance().setChatBaseEvent(null);
+            ClientCoreSDK.getInstance().setChatMessageEvent(null);
+            ClientCoreSDK.getInstance().setMessageQoSEvent(null);
+
                 }
             }, 3000);//3秒后执行Runnable中的run方法
-
+            this.init = false;
 
 
             result.success(code);
@@ -101,19 +101,19 @@ public class MyChatCorePlugin implements FlutterPlugin, MethodCallHandler {
         eventChannel = null;
     }
 
-    private boolean _init;
+    private boolean init;
 
     private void initMobileIMSDK(String ip, int port) {
         // 设置IM聊天服务端IP地址或域名
         ConfigEntity.serverIP = ip;
         ConfigEntity.serverPort = port;
         // 初始化
-        if (!this._init) {
+        if (!this.init) {
             ClientCoreSDK.getInstance().init(context);
             ClientCoreSDK.getInstance().setChatBaseEvent(listener);
             ClientCoreSDK.getInstance().setChatMessageEvent(listener);
             ClientCoreSDK.getInstance().setMessageQoSEvent(listener);
-            this._init = true;
+            this.init = true;
         }
     }
 
