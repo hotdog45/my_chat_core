@@ -62,7 +62,7 @@ public class MyChatCorePlugin implements FlutterPlugin, MethodCallHandler {
                 }
             }.execute();
         }  else if (call.method.equals("loginOut")) {
-//            int code = LocalDataSender.getInstance().sendLoginout();
+            int code = LocalDataSender.getInstance().sendLoginout();
             // 释放IM核心库资源
             ClientCoreSDK.getInstance().release();
 
@@ -72,7 +72,7 @@ public class MyChatCorePlugin implements FlutterPlugin, MethodCallHandler {
 //            ClientCoreSDK.getInstance().setMessageQoSEvent(null);
 //            this._init = false;
 
-            result.success(0);
+            result.success(code);
         }else if (call.method.equals("sendMassage")) {
 
             LocalDataSender.getInstance().sendCommonData((String) map.get("message"), (String) map.get("uid"), (String) map.get("fingerId"), (int) map.get("type"));
