@@ -62,15 +62,15 @@ public class MyChatCorePlugin implements FlutterPlugin, MethodCallHandler {
                 }
             }.execute();
         }  else if (call.method.equals("loginOut")) {
-            int code = LocalDataSender.getInstance().sendLoginout();
+//            int code = LocalDataSender.getInstance().sendLoginout();
             // 释放IM核心库资源
             ClientCoreSDK.getInstance().release();
 
             // 清空设置的回调
-            ClientCoreSDK.getInstance().setChatBaseEvent(null);
-            ClientCoreSDK.getInstance().setChatMessageEvent(null);
-            ClientCoreSDK.getInstance().setMessageQoSEvent(null);
-            this._init = false;
+//            ClientCoreSDK.getInstance().setChatBaseEvent(null);
+//            ClientCoreSDK.getInstance().setChatMessageEvent(null);
+//            ClientCoreSDK.getInstance().setMessageQoSEvent(null);
+//            this._init = false;
 
             result.success(code);
         }else if (call.method.equals("sendMassage")) {
