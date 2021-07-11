@@ -72,7 +72,7 @@ public class MyChatCorePlugin implements FlutterPlugin, MethodCallHandler {
 //            ClientCoreSDK.getInstance().setMessageQoSEvent(null);
 //            this._init = false;
 
-            result.success(code);
+            result.success(0);
         }else if (call.method.equals("sendMassage")) {
 
             LocalDataSender.getInstance().sendCommonData((String) map.get("message"), (String) map.get("uid"), (String) map.get("fingerId"), (int) map.get("type"));
