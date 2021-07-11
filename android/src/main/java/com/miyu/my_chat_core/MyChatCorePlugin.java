@@ -40,7 +40,7 @@ public class MyChatCorePlugin implements FlutterPlugin, MethodCallHandler {
         context = flutterPluginBinding.getApplicationContext();
         channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "my_chat_core");
         eventChannel = new EventChannel(flutterPluginBinding.getBinaryMessenger(), "my_chat_core_status");
-        listener = new ChatMessageEventListener(flutterPluginBinding.getApplicationContext());
+        listener = new ChatMessageEventListener();
         eventChannel.setStreamHandler(listener);
         channel.setMethodCallHandler(this);
     }
@@ -61,7 +61,18 @@ public class MyChatCorePlugin implements FlutterPlugin, MethodCallHandler {
                     result1.success(code);
                 }
             }.execute();
-        } else if (call.method.equals("sendMassage")) {
+        }  else if (call.method.equals("loginOut")) {
+            // 释放IM核心库资源
+            ClientCoreSDK.getInstance().release();
+            int code = LocalDataSender.getInstance().sendLoginout();
+            // 清空设置的回调
+            ClientCoreSDK.getInstance().setChatBaseEvent(null);
+            ClientCoreSDK.getInstance().setChatMessageEvent(null);
+            ClientCoreSDK.getInstance().setMessageQoSEvent(null);
+            this._init = false;
+
+            result.success(code);
+        }else if (call.method.equals("sendMassage")) {
 
             LocalDataSender.getInstance().sendCommonData((String) map.get("message"), (String) map.get("uid"), (String) map.get("fingerId"), (int) map.get("type"));
             result.success(true);
